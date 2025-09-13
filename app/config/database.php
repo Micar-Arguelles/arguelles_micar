@@ -63,7 +63,7 @@ $database['main'] = array(
     'port'		=> '3306',
     'username'	=> 'sql12798460',
     'password'	=> 'gzQeM8igJD',
-    'database'	=> 'mockdata',
+    'database'	=> 'sql12798460',
     'charset'	=> 'utf8mb4',
     'dbprefix'	=> '',
     // Optional for SQLite
