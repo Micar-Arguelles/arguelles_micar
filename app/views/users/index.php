@@ -92,17 +92,17 @@
 
      <!-- Pagination -->
 <div class="mt-6 flex justify-center">
-  <div class="inline-flex gap-2 text-sm font-medium" style="font-family:'IM Fell English', serif;">
+  <div class="flex flex-row flex-wrap items-center gap-2 text-sm font-medium" style="font-family:'IM Fell English', serif;">
     <?php 
       if (!empty($page)) {
         echo str_replace(
           ['<a ', '<strong>', '</strong>'], 
           [
             // Normal links
-            '<a class="btn-hover px-4 py-2 rounded-lg border-2 bg-white text-yellow-800 border-yellow-600 hover:bg-yellow-600 hover:text-white transition-all shadow-md" ',
+            '<a class="btn-hover inline-flex items-center justify-center px-4 py-2 rounded-lg border-2 bg-white text-yellow-800 border-yellow-600 hover:bg-yellow-600 hover:text-white transition-all shadow-md" ',
             
             // Current page
-            '<span class="px-4 py-2 rounded-lg border-2 bg-yellow-700 text-white border-yellow-700 shadow-md">',
+            '<span class="inline-flex items-center justify-center px-4 py-2 rounded-lg border-2 bg-yellow-700 text-white border-yellow-700 shadow-md">',
             '</span>'
           ], 
           $page
