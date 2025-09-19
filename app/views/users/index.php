@@ -92,17 +92,21 @@
 
 <!-- Pagination -->
 <div class="mt-6 flex justify-center">
-  <div class="flex flex-row items-center gap-2 text-sm font-medium" style="font-family:'IM Fell English', serif;">
+  <div class="flex flex-row flex-wrap items-center gap-2 text-sm font-medium" style="font-family:'IM Fell English', serif;">
     <?php 
       if (!empty($page)) {
         echo str_replace(
-          ['<a ', '<strong>', '</strong>'], 
           [
-            // Normal buttons (inactive)
-            '<a class="btn-hover inline-flex items-center justify-center px-4 py-2 rounded-md bg-blue-900 text-white shadow hover:bg-blue-700 transition-all"',
+            '<a ',      // normal link
+            '<strong>', // active page
+            '</strong>' // end active page
+          ], 
+          [
+            // Normal buttons (inactive) - Harry Potter theme
+            '<a class="btn-hover inline-flex items-center justify-center px-4 py-2 rounded-lg bg-gradient-to-r from-red-700 to-yellow-600 text-yellow-100 shadow hover:scale-105 transition-all"',
             
-            // Current page (active)
-            '<span class="inline-flex items-center justify-center px-4 py-2 rounded-md bg-green-700 text-white shadow-md border-2 border-yellow-400">',
+            // Active page
+            '<span class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-yellow-700 text-white shadow-md border-2 border-red-800">',
             '</span>'
           ], 
           $page
