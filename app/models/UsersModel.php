@@ -4,11 +4,11 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 class Usersmodel extends Model {
     protected $table = 'students';
     protected $primary_key = 'id';
-    protected $allowed_fields = ['fname', 'mname', 'lname', 'email'];
+    protected $allowed_fields = ['lname', 'fname', 'email'];
     protected $validation_rules = [
-        'fname' => 'required|min_length[2]|max_length[100]',
-        'mname' => 'max_length[100]',
+        
         'lname' => 'required|min_length[2]|max_length[100]',
+        'fname' => 'required|min_length[2]|max_length[100]',
         'email' => 'required|valid_email|max_length[150]'
     ];
 
@@ -29,9 +29,9 @@ class Usersmodel extends Model {
             $query = $this->db->table($this->table);
 
             if (!empty($q)) {
-                $query->like('fname', '%'.$q.'%')
-                      ->or_like('mname', '%'.$q.'%')
+                $query
                       ->or_like('lname', '%'.$q.'%')
+                      ->like('fname', '%'.$q.'%')
                       ->or_like('email', '%'.$q.'%');
             }
 
