@@ -30,17 +30,19 @@
 
       <!-- Top Actions -->
       <div class="flex justify-between items-center mb-6">
-        <!-- Search -->
-        <form action="<?=site_url('users')?>" method="get" class="flex gap-2">
-          <input type="text" name="search" value="<?=html_escape($search)?>"
-                 placeholder="Search student..."
-                 class="px-3 py-2 rounded-lg border-2 border-yellow-700 focus:ring-2 focus:ring-red-700 w-64">
-          <button type="submit"
-                  class="btn-hover bg-yellow-700 text-white px-4 py-2 rounded-lg">
-            <i class="fa-solid fa-magnifying-glass"></i> Search
-          </button>
-        </form>
-
+        
+      <!-- Search Bar -->
+  <form method="get" action="<?=site_url()?>" class="mb-4 flex justify-end">
+    <input 
+      type="text" 
+      name="q" 
+      value="<?=html_escape($_GET['q'] ?? '')?>" 
+      placeholder="Search student..." 
+      class="px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-green-500 w-64">
+    <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-r-lg shadow transition-all duration-300">
+      <i class="fa fa-search"></i>
+    </button>
+  </form>
 
         <!-- Add Button -->
         <a href="<?=site_url('users/create')?>"
@@ -63,13 +65,12 @@
           </thead>
           <tbody class="text-gray-900 text-sm" style="font-family:'IM Fell English', serif;">
             <?php if(!empty($users)): ?>
-              <?php foreach($users as $user): ?>
+              <?php foreach(html_escape($users) as $user): ?>
                 <tr class="hover:bg-yellow-200 transition duration-200">
-                  <td><?= html_escape($user['id']); ?></td>
-<td><?= html_escape($user['last_name']); ?></td>
-<td><?= html_escape($user['first_name']); ?></td>
-<td><?= html_escape($user['email']); ?></td>
-
+                  <td class="py-3 px-4 font-medium"><?=($user['id']);?></td>
+                  <td class="py-3 px-4"><?=($user['last_name']);?></td>
+                  <td class="py-3 px-4"><?=($user['first_name']);?></td>
+                  <td class="py-3 px-4"><?=($user['email']);?></td>
                   <td class="py-3 px-4 flex justify-center gap-3">
                     <a href="<?=site_url('users/update/'.$user['id']);?>"
                        class="btn-hover bg-green-700 hover:bg-green-800 text-yellow-100 px-3 py-1 rounded-lg shadow flex items-center gap-1">
@@ -90,14 +91,13 @@
       </div>
 
       <!-- Pagination -->
-      <div class="flex justify-center mt-6 gap-2">
-        <?php for($i = 1; $i <= $total_pages; $i++): ?>
-          <a href="<?=site_url('users?page='.$i.'&search='.$search)?>"
-             class="px-4 py-2 rounded-lg border-2 <?=($current_page==$i?'bg-yellow-700 text-white border-yellow-700':'bg-white text-yellow-800 border-yellow-600')?> hover:bg-yellow-600 hover:text-white transition-all">
-            <?=$i?>
-          </a>
-        <?php endfor; ?>
-      </div>
+<div class="mt-4 flex justify-center">
+  <div class="pagination flex space-x-2">
+      <?=$page ?? ''?>
+  </div>
+</div>
+
+</div>
 
     </div>
   </div>

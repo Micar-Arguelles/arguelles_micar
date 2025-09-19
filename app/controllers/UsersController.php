@@ -9,23 +9,47 @@ class UsersController extends Controller {
     }
 
     public function index()
-{
-    // safely handle GET values
-    $search = isset($_GET['search']) ? $_GET['search'] : '';
-    $page   = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    {
+        // Current page
+        $page = 1;
+        if (isset($_GET['page']) && !empty($_GET['page'])) {
+            $page = $this->io->get('page');
+        }
 
-    $limit  = 5; // students per page
-    $offset = ($page - 1) * $limit;
+        // Search query
+        $q = '';
+        if (isset($_GET['q']) && !empty($_GET['q'])) {
+            $q = trim($this->io->get('q'));
+        }
 
-    $data['search'] = $search;
-    $data['users']  = $this->UsersModel->get_users($limit, $offset, $search);
-    $total_users    = $this->UsersModel->count_users($search);
+        $records_per_page = 5;
 
-    $data['total_pages']  = ceil($total_users / $limit);
-    $data['current_page'] = $page;
+        
+        $all = $this->StudentsModel->page($q, $records_per_page, $page);
+        $data['students'] = $all['records'];
+        $total_rows = $all['total_rows'];
 
-    $this->call->view('users/index', $data);
-}
+        // Pagination 
+        
+        $this->pagination->set_options([
+            'first_link'     => '⏮ First',
+            'last_link'      => 'Last ⏭',
+            'next_link'      => 'Next →',
+            'prev_link'      => '← Prev',
+            'page_delimiter' => '&page='
+        ]);
+       
+        $this->pagination->set_theme('default');
+        $this->pagination->initialize(
+            $total_rows,
+            $records_per_page,
+            $page,
+            site_url() . '?q=' . urlencode($q)
+        );
+        $data['page'] = $this->pagination->paginate();
+
+        $this->call->view('students/index', $data);
+    }
 
     function create(){
         if($this->io->method() == 'post'){
