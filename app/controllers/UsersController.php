@@ -10,9 +10,10 @@ class UsersController extends Controller {
 
     public function index()
 {
-    // safer way to handle optional GET params
-    $search = $this->io->has('search') ? $this->io->get('search') : '';
-    $page   = $this->io->has('page') ? (int)$this->io->get('page') : 1;
+    // use null coalescing operator instead of has()
+    $search = $this->io->get('search') ?? '';
+    $page   = $this->io->get('page') ?? 1;
+    $page   = (int)$page;
 
     $limit  = 5; // students per page
     $offset = ($page - 1) * $limit;
@@ -20,7 +21,8 @@ class UsersController extends Controller {
     $data['search'] = $search;
     $data['users']  = $this->UsersModel->get_users($limit, $offset, $search);
     $total_users    = $this->UsersModel->count_users($search);
-    $data['total_pages'] = ceil($total_users / $limit);
+
+    $data['total_pages']  = ceil($total_users / $limit);
     $data['current_page'] = $page;
 
     $this->call->view('users/index', $data);
