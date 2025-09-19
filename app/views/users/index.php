@@ -91,22 +91,26 @@
       </div>
 
 <!-- Pagination -->
-<div class="flex justify-center mt-6 gap-2">
-    <?= $page ?> <!-- dito lalabas lahat ng page links na ginawa ng controller -->
+<div class="mt-6 flex justify-center">
+  <div class="flex flex-row items-center gap-2 text-sm font-medium" style="font-family:'IM Fell English', serif;">
+    <?php 
+      if (!empty($page)) {
+        echo str_replace(
+          ['<a ', '<strong>', '</strong>'], 
+          [
+            // Normal buttons (inactive)
+            '<a class="btn-hover inline-flex items-center justify-center px-4 py-2 rounded-md bg-blue-900 text-white shadow hover:bg-blue-700 transition-all"',
+            
+            // Current page (active)
+            '<span class="inline-flex items-center justify-center px-4 py-2 rounded-md bg-green-700 text-white shadow-md border-2 border-yellow-400">',
+            '</span>'
+          ], 
+          $page
+        );
+      }
+    ?>
+  </div>
 </div>
-
-<style>
-/* Harry Potter style for pagination links */
-.pagination a, .pagination span {
-    @apply px-4 py-2 rounded-lg border-2 border-yellow-600 text-yellow-800 bg-white hover:bg-yellow-600 hover:text-white transition-all;
-}
-
-.pagination .active {
-    @apply bg-yellow-700 text-white border-yellow-700;
-}
-</style>
-
-
 
     </div>
   </div>
