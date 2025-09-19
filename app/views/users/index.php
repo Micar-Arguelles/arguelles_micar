@@ -37,20 +37,10 @@
   <div class="max-w-6xl mx-auto mt-10 px-4">
     <div class="bg-yellow-50 shadow-xl rounded-xl p-6 border-4 border-yellow-700">
 
-      <!-- Search & Add -->
-      <div class="flex justify-between items-center mb-6">
-        <form action="<?= site_url('/'); ?>" method="get" class="flex gap-2 flex-1">
-          <?php $q = isset($_GET['q']) ? $_GET['q'] : ''; ?>
-          <input type="text" name="q" 
-                 class="flex-1 px-3 py-2 rounded-lg border-2 border-yellow-700 focus:ring-2 focus:ring-yellow-500"
-                 placeholder="Search students..." value="<?= htmlspecialchars($q); ?>">
-          <button type="submit" 
-                  class="btn-hover px-4 py-2 bg-gradient-to-r from-red-700 to-yellow-600 rounded-lg text-white font-semibold">
-            <i class="fa-solid fa-magnifying-glass mr-1"></i>Search
-          </button>
-        </form>
+      <!-- Add Button -->
+      <div class="flex justify-end mb-6">
         <a href="<?=site_url('users/create')?>"
-           class="btn-hover ml-4 inline-flex items-center gap-2 bg-gradient-to-r from-red-700 to-yellow-600 text-white font-bold px-5 py-2 rounded-lg shadow-md transition-all duration-300">
+           class="btn-hover inline-flex items-center gap-2 bg-gradient-to-r from-red-700 to-yellow-600 text-white font-bold px-5 py-2 rounded-lg shadow-md transition-all duration-300">
           <i class="fa-solid fa-user-plus"></i> Add New Student
         </a>
       </div>
@@ -68,38 +58,26 @@
             </tr>
           </thead>
           <tbody class="text-gray-900 text-sm" style="font-family:'IM Fell English', serif;">
-            <?php if(!empty($users)): ?>
-              <?php foreach($users as $user): ?>
-                <tr class="hover:bg-yellow-200 transition duration-200">
-                  <td class="py-3 px-4 font-medium"><?= htmlspecialchars($user['id']); ?></td>
-                  <td class="py-3 px-4"><?= htmlspecialchars($user['last_name']); ?></td>
-                  <td class="py-3 px-4"><?= htmlspecialchars($user['first_name']); ?></td>
-                  <td class="py-3 px-4"><?= htmlspecialchars($user['email']); ?></td>
-                  <td class="py-3 px-4 flex justify-center gap-3">
-                    <a href="<?=site_url('users/update/'.$user['id']);?>"
-                       class="btn-hover bg-green-700 hover:bg-green-800 text-yellow-100 px-3 py-1 rounded-lg shadow flex items-center gap-1">
-                      <i class="fa-solid fa-pen-to-square"></i> Update
-                    </a>
-                    <a href="<?=site_url('users/delete/'.$user['id']);?>"
-                       onclick="return confirm('Are you sure?')"
-                       class="btn-hover bg-red-700 hover:bg-red-900 text-yellow-100 px-3 py-1 rounded-lg shadow flex items-center gap-1">
-                      <i class="fa-solid fa-trash"></i> Delete
-                    </a>
-                  </td>
-                </tr>
-              <?php endforeach; ?>
-            <?php else: ?>
-              <tr>
-                <td colspan="5" class="py-4 text-red-900 italic">No students found 🪄</td>
+            <?php foreach(html_escape($users) as $user): ?>
+              <tr class="hover:bg-yellow-200 transition duration-200">
+                <td class="py-3 px-4 font-medium"><?=($user['id']);?></td>
+                <td class="py-3 px-4"><?=($user['last_name']);?></td>
+                <td class="py-3 px-4"><?=($user['first_name']);?></td>
+                <td class="py-3 px-4"><?=($user['email']);?></td>
+                <td class="py-3 px-4 flex justify-center gap-3">
+                  <a href="<?=site_url('users/update/'.$user['id']);?>"
+                     class="btn-hover bg-green-700 hover:bg-green-800 text-yellow-100 px-3 py-1 rounded-lg shadow flex items-center gap-1">
+                    <i class="fa-solid fa-pen-to-square"></i> Update
+                  </a>
+                  <a href="<?=site_url('users/delete/'.$user['id']);?>"
+                     class="btn-hover bg-red-700 hover:bg-red-900 text-yellow-100 px-3 py-1 rounded-lg shadow flex items-center gap-1">
+                    <i class="fa-solid fa-trash"></i> Delete
+                  </a>
+                </td>
               </tr>
-            <?php endif; ?>
+            <?php endforeach; ?>
           </tbody>
         </table>
-      </div>
-
-      <!-- Pagination -->
-      <div class="mt-6 flex justify-center gap-2 text-red-900 font-bold">
-        <?= $page ?? '' ?>
       </div>
 
     </div>

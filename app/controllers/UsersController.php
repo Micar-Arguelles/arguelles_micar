@@ -10,39 +10,15 @@ class UsersController extends Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->call->model('UsersModel');
-        $this->call->library('pagination');
     }
 
+    public function index()
+    {
+        $this->call->model('UsersModel');
+        $data['users'] = $this->UsersModel-> All();
 
-    function index()
-{       
-    $page = (int) ($this->io->get('page') ?? 1);
-    $q = trim($this->io->get('q') ?? '');
-
-    $records_per_page = 5;
-
-    $all = $this->UsersModel->page($q, $records_per_page, $page);
-
-    $data['users'] = $all['records'];
-    $total_rows = $all['total_rows'];
-
-    $this->pagination->set_options([
-        'first_link'     => '⏮ First',
-        'last_link'      => 'Last ⏭',
-        'next_link'      => 'Next →',
-        'prev_link'      => '← Prev',
-        'page_delimiter' => '&page='
-    ]);
-    $this->pagination->set_theme('custom');
-    $this->pagination->initialize($total_rows, $records_per_page, $page, '/?q='.$q);
-
-    $data['page'] = $this->pagination->paginate();
-    $data['q'] = $q;
-
-    $this->call->view('users/index', $data);
-}
-
+        $this->call->view('users/index', $data);
+    }
 
     function create(){
         if($this->io->method() == 'post'){
