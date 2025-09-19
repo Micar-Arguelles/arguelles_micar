@@ -7,7 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=IM+Fell+English&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="<?=site_url('public/style.css')?>">
+  <link rel="stylesheet" href="<?=base_url();?>/public/style.css">
 
   <style>
     body { font-family: 'IM Fell English', serif; background-color: #fae5b3; }
