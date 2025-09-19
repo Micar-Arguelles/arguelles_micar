@@ -1,4 +1,4 @@
-/* Harry Potter Pagination */
+/* Harry Potter Pagination - Aesthetic Colors */
 .pagination {
     display: flex;
     flex-direction: row;
@@ -16,17 +16,17 @@
     padding: 0.5rem 1rem;
     min-width: 50px;
     border-radius: 0.5rem;
-    background: linear-gradient(to right, #b22222, #ffd700);
-    color: #fff8dc;
+    background: linear-gradient(to right, #8B4513, #D2B48C); /* SaddleBrown to Tan */
+    color: #f5f5dc; /* Beige / parchment-like */
     text-decoration: none;
     font-weight: 600;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     transition: all 0.3s ease;
 }
 
-/* Hover effect */
+/* Hover effect - magical glow */
 .hp-page:hover {
-    box-shadow: 0 0 8px gold, 0 0 16px crimson;
+    box-shadow: 0 0 8px #FFD700, 0 0 16px #DAA520; /* Gold + Goldenrod glow */
     transform: scale(1.05);
 }
 
@@ -38,9 +38,9 @@
     padding: 0.5rem 1rem;
     min-width: 50px;
     border-radius: 0.5rem;
-    background-color: #ffd700;
-    color: #8b0000;
+    background-color: #DAA520; /* Goldenrod */
+    color: #4B0082; /* Indigo for contrast, wizardly vibe */
     font-weight: 700;
-    border: 2px solid #b22222;
-    box-shadow: 0 0 12px gold, 0 0 24px crimson;
+    border: 2px solid #8B4513; /* SaddleBrown border */
+    box-shadow: 0 0 10px #FFD700, 0 0 20px #DAA520;
 }
