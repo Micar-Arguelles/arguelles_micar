@@ -2,48 +2,47 @@
    Harry Potter Pagination
 ============================ */
 
-/* Container */
 .pagination {
-  font-family: 'IM Fell English', serif;
+    font-family: 'IM Fell English', serif;
 }
 
 /* Normal page links */
 .pagination a {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  background: linear-gradient(to right, #b22222, #ffd700); /* Red to gold gradient */
-  color: #fff8dc;
-  text-decoration: none;
-  font-weight: 600;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-  transition: all 0.3s ease;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background: linear-gradient(to right, #b22222, #ffd700); /* Red to gold gradient */
+    color: #fff8dc;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    transition: all 0.3s ease;
 }
 
 /* Hover effect - magical glow */
 .pagination a:hover {
-  box-shadow: 0 0 8px gold, 0 0 16px crimson;
-  transform: scale(1.05);
+    box-shadow: 0 0 8px gold, 0 0 16px crimson;
+    transform: scale(1.05);
 }
 
 /* Active page (current page) */
 .pagination strong {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  background-color: #ffd700; /* gold */
-  color: #8b0000; /* dark red */
-  font-weight: 700;
-  border: 2px solid #b22222;
-  box-shadow: 0 0 12px gold, 0 0 24px crimson;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background-color: #ffd700; /* gold */
+    color: #8b0000; /* dark red */
+    font-weight: 700;
+    border: 2px solid #b22222;
+    box-shadow: 0 0 12px gold, 0 0 24px crimson;
 }
 
-/* Spacing for buttons */
+/* First/Prev/Next/Last buttons spacing */
 .pagination a + a,
 .pagination strong + a {
-  margin-left: 0.25rem;
+    margin-left: 0.25rem;
 }

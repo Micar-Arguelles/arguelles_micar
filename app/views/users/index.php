@@ -95,9 +95,10 @@
       <!-- Pagination -->
 <div class="mt-4 flex justify-center">
   <div class="pagination flex space-x-2">
-      <?=$page ?? ''?>
+      <?= $page ?? '' ?>
   </div>
 </div>
+
 
 </div>
 
