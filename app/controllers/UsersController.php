@@ -61,7 +61,7 @@ class UsersController extends Controller {
             ];
 
             if($this->UsersModel->insert($data)){
-                redirect(site_url('users'));
+                redirect(site_url());
             }else{
                 echo "Error in creating user.";
             }
@@ -86,7 +86,7 @@ class UsersController extends Controller {
             ];
 
             if($this->UsersModel->update($id, $data)){
-                redirect(site_url('users'));
+                redirect(site_url());
             }else{
                 echo "Error in updating information.";
             }
@@ -98,7 +98,7 @@ class UsersController extends Controller {
     
     function delete($id){
         if($this->UsersModel->delete($id)){
-            redirect(site_url('users'));
+            redirect(site_url());
         }else{
             echo "Error in deleting user.";
         }
