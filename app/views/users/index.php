@@ -95,7 +95,20 @@
       <!-- Pagination -->
 <div class="mt-4 flex justify-center">
   <div class="pagination flex space-x-2">
-      <?= $page ?? '' ?>
+    <?php
+      if (!empty($page)) {
+        // Palitan ang <strong> at <a> ng custom class
+        echo str_replace(
+          ['<a ', '<strong>', '</strong>'],
+          [
+            '<a class="hp-page"',          // Normal page link
+            '<span class="hp-current">',   // Current page
+            '</span>'
+          ],
+          $page
+        );
+      }
+    ?>
   </div>
 </div>
 
