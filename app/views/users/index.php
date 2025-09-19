@@ -7,6 +7,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=IM+Fell+English&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="<?=site_url('public/style.css')?>">
+
   <style>
     body { font-family: 'IM Fell English', serif; background-color: #fae5b3; }
     .font-title { font-family: 'Cinzel Decorative', cursive; letter-spacing: 2px; }
@@ -90,30 +92,13 @@
         </table>
       </div>
 
-<!-- Pagination -->
-<div class="mt-6 flex justify-center">
-  <div class="flex flex-row flex-wrap items-center gap-2 text-sm font-medium" style="font-family:'IM Fell English', serif;">
-    <?php 
-      if (!empty($page)) {
-        echo str_replace(
-          [
-            '<a ',      // normal link
-            '<strong>', // active page
-            '</strong>' // end active page
-          ], 
-          [
-            // Normal buttons (inactive) - Harry Potter theme
-            '<a class="btn-hover inline-flex items-center justify-center px-4 py-2 rounded-lg bg-gradient-to-r from-red-700 to-yellow-600 text-yellow-100 shadow hover:scale-105 transition-all"',
-            
-            // Active page
-            '<span class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-yellow-700 text-white shadow-md border-2 border-red-800">',
-            '</span>'
-          ], 
-          $page
-        );
-      }
-    ?>
+      <!-- Pagination -->
+<div class="mt-4 flex justify-center">
+  <div class="pagination flex space-x-2">
+      <?=$page ?? ''?>
   </div>
+</div>
+
 </div>
 
     </div>
