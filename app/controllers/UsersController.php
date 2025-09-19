@@ -17,25 +17,16 @@ class UsersController extends Controller {
 
     function index()
 {       
-    $page = 1;
-    if ($this->io->get('page')) {
-        $page = (int)$this->io->get('page');
-    }
-
-    $q = '';
-    if ($this->io->get('q')) {
-        $q = trim($this->io->get('q'));
-    }
+    $page = (int) ($this->io->get('page') ?? 1);
+    $q = trim($this->io->get('q') ?? '');
 
     $records_per_page = 5;
 
-    // Kukunin sa model na may page() function
     $all = $this->UsersModel->page($q, $records_per_page, $page);
 
-    $data['users'] = $all['records'];   // use 'users' para consistent sa view
+    $data['users'] = $all['records'];
     $total_rows = $all['total_rows'];
 
-    // Setup pagination
     $this->pagination->set_options([
         'first_link'     => '⏮ First',
         'last_link'      => 'Last ⏭',
@@ -43,7 +34,7 @@ class UsersController extends Controller {
         'prev_link'      => '← Prev',
         'page_delimiter' => '&page='
     ]);
-    $this->pagination->set_theme('custom'); 
+    $this->pagination->set_theme('custom');
     $this->pagination->initialize($total_rows, $records_per_page, $page, '/?q='.$q);
 
     $data['page'] = $this->pagination->paginate();
@@ -51,6 +42,7 @@ class UsersController extends Controller {
 
     $this->call->view('users/index', $data);
 }
+
 
     function create(){
         if($this->io->method() == 'post'){
