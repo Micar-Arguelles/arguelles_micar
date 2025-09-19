@@ -92,7 +92,7 @@
 
 <!-- Pagination -->
 <div class="flex justify-center mt-6 gap-2">
-  <?php for($i = 1; $i <= $pages; $i++): ?>
+  <?php for($i = 1; $i <= $page; $i++): ?>
     <a href="<?=site_url('users?page='.$i.'&q='.($_GET['q'] ?? ''))?>"
        class="px-4 py-2 rounded-lg border-2 <?=($current_page==$i 
           ? 'bg-yellow-700 text-white border-yellow-700' 
