@@ -65,10 +65,11 @@
             <?php if(!empty($users)): ?>
               <?php foreach($users as $user): ?>
                 <tr class="hover:bg-yellow-200 transition duration-200">
-                  <td class="py-3 px-4 font-medium"><?=($user['id']);?></td>
-                  <td class="py-3 px-4"><?=($user['last_name']);?></td>
-                  <td class="py-3 px-4"><?=($user['first_name']);?></td>
-                  <td class="py-3 px-4"><?=($user['email']);?></td>
+                  <td><?= html_escape($user['id']); ?></td>
+<td><?= html_escape($user['last_name']); ?></td>
+<td><?= html_escape($user['first_name']); ?></td>
+<td><?= html_escape($user['email']); ?></td>
+
                   <td class="py-3 px-4 flex justify-center gap-3">
                     <a href="<?=site_url('users/update/'.$user['id']);?>"
                        class="btn-hover bg-green-700 hover:bg-green-800 text-yellow-100 px-3 py-1 rounded-lg shadow flex items-center gap-1">
