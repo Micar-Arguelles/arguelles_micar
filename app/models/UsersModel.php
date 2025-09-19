@@ -22,7 +22,7 @@ class UsersModel extends Model {
         }
 
         $builder->limit($limit, $offset);
-        return $builder->get_all();
+        return $builder->get_all('array');
     }
 
     // Bilangin total users for pagination
