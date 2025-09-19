@@ -90,20 +90,28 @@
         </table>
       </div>
 
-      <!-- Pagination -->
-<div class="flex justify-center mt-6 gap-2">
-  <?php for($i = 1; $i <= $total_pages; $i++): ?>
-    <a href="<?=site_url('users?page='.$i.'&q='.$_GET['q'] ?? '')?>"
-       class="px-4 py-2 rounded-lg border-2 <?=($current_page==$i 
-          ? 'bg-yellow-700 text-white border-yellow-700' 
-          : 'bg-white text-yellow-800 border-yellow-600')?> 
-          hover:bg-yellow-600 hover:text-white transition-all">
-      <?=$i?>
-    </a>
-  <?php endfor; ?>
+     <!-- Pagination -->
+<div class="mt-6 flex justify-center">
+  <div class="inline-flex gap-2 text-sm font-medium" style="font-family:'IM Fell English', serif;">
+    <?php 
+      if (!empty($page)) {
+        echo str_replace(
+          ['<a ', '<strong>', '</strong>'], 
+          [
+            // Normal links
+            '<a class="btn-hover px-4 py-2 rounded-lg border-2 bg-white text-yellow-800 border-yellow-600 hover:bg-yellow-600 hover:text-white transition-all shadow-md" ',
+            
+            // Current page
+            '<span class="px-4 py-2 rounded-lg border-2 bg-yellow-700 text-white border-yellow-700 shadow-md">',
+            '</span>'
+          ], 
+          $page
+        );
+      }
+    ?>
+  </div>
 </div>
 
-</div>
 
     </div>
   </div>
