@@ -1,5 +1,10 @@
 /* Harry Potter Pagination */
 .pagination {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
     font-family: 'IM Fell English', serif;
 }
 
@@ -9,6 +14,7 @@
     justify-content: center;
     align-items: center;
     padding: 0.5rem 1rem;
+    min-width: 50px;
     border-radius: 0.5rem;
     background: linear-gradient(to right, #b22222, #ffd700);
     color: #fff8dc;
@@ -18,18 +24,19 @@
     transition: all 0.3s ease;
 }
 
-/* Hover effect - magical glow */
+/* Hover effect */
 .hp-page:hover {
     box-shadow: 0 0 8px gold, 0 0 16px crimson;
     transform: scale(1.05);
 }
 
-/* Active page */
+/* Current page */
 .hp-current {
     display: inline-flex;
     justify-content: center;
     align-items: center;
     padding: 0.5rem 1rem;
+    min-width: 50px;
     border-radius: 0.5rem;
     background-color: #ffd700;
     color: #8b0000;
