@@ -63,7 +63,7 @@
           </thead>
           <tbody class="text-gray-900 text-sm" style="font-family:'IM Fell English', serif;">
             <?php if(!empty($users)): ?>
-              <?php foreach(html_escape($users) as $user): ?>
+              <?php foreach($users as $user): ?>
                 <tr class="hover:bg-yellow-200 transition duration-200">
                   <td class="py-3 px-4 font-medium"><?=($user['id']);?></td>
                   <td class="py-3 px-4"><?=($user['last_name']);?></td>
