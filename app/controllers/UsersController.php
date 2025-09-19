@@ -10,10 +10,9 @@ class UsersController extends Controller {
 
     public function index()
 {
-    // use null coalescing operator instead of has()
-    $search = $this->io->get('search') ?? '';
-    $page   = $this->io->get('page') ?? 1;
-    $page   = (int)$page;
+    // safely handle GET values
+    $search = isset($_GET['search']) ? $_GET['search'] : '';
+    $page   = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
     $limit  = 5; // students per page
     $offset = ($page - 1) * $limit;
