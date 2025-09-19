@@ -90,20 +90,38 @@
         </table>
       </div>
 
+<?php
+// Pagination variables
+$records_per_page = 5; // same as controller
+$total_rows = isset($all['total_rows']) ? $all['total_rows'] : count($users); 
+$total_pages = ceil($total_rows / $records_per_page);
+$current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+?>
+
 <!-- Pagination -->
 <div class="flex justify-center mt-6 gap-2">
-  <?php for($i = 1; $i <= $page; $i++): ?>
-    <a href="<?=site_url('users?page='.$i.'&q='.($_GET['q'] ?? ''))?>"
-       class="px-4 py-2 rounded-lg border-2 <?=($current_page==$i 
-          ? 'bg-yellow-700 text-white border-yellow-700' 
-          : 'bg-white text-yellow-800 border-yellow-600')?> 
-          hover:bg-yellow-600 hover:text-white transition-all">
-      <?=$i?>
-    </a>
-  <?php endfor; ?>
+    <?php if($total_pages > 1): ?>
+        <!-- Previous -->
+        <a href="<?= site_url('users?page='.($current_page-1).'&q='.($_GET['q'] ?? '')) ?>"
+           class="px-4 py-2 rounded-lg border-2 bg-white text-yellow-800 border-yellow-600 hover:bg-yellow-600 hover:text-white transition-all <?= ($current_page==1 ? 'opacity-50 cursor-not-allowed' : '') ?>">
+            ← Prev
+        </a>
+
+        <!-- Page Numbers -->
+        <?php for($i = 1; $i <= $total_pages; $i++): ?>
+            <a href="<?= site_url('users?page='.$i.'&q='.($_GET['q'] ?? '')) ?>"
+               class="px-4 py-2 rounded-lg border-2 <?= ($current_page==$i ? 'bg-yellow-700 text-white border-yellow-700' : 'bg-white text-yellow-800 border-yellow-600') ?> hover:bg-yellow-600 hover:text-white transition-all">
+                <?= $i ?>
+            </a>
+        <?php endfor; ?>
+
+        <!-- Next -->
+        <a href="<?= site_url('users?page='.($current_page+1).'&q='.($_GET['q'] ?? '')) ?>"
+           class="px-4 py-2 rounded-lg border-2 bg-white text-yellow-800 border-yellow-600 hover:bg-yellow-600 hover:text-white transition-all <?= ($current_page==$total_pages ? 'opacity-50 cursor-not-allowed' : '') ?>">
+            Next →
+        </a>
+    <?php endif; ?>
 </div>
-
-
 
 
     </div>
