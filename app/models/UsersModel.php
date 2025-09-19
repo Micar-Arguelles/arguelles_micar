@@ -21,7 +21,7 @@ class UsersModel extends Model {
     public function page($q = '', $records_per_page = 5, $page = 1) {
         $query = $this->db->table($this->table);
 
-        // Search (LIKE conditions)
+        // Search
         if (!empty($q)) {
             $query->group_start()
                   ->like('id', $q)
@@ -31,7 +31,7 @@ class UsersModel extends Model {
                   ->group_end();
         }
 
-        // Count all results
+        // Count total rows
         $countQuery = $this->db->table($this->table);
         if (!empty($q)) {
             $countQuery->group_start()
@@ -43,7 +43,7 @@ class UsersModel extends Model {
         }
         $total_rows = $countQuery->count_all_results();
 
-        // Fetch paginated records
+        // Paginated records
         $records = $query->order_by('id', 'ASC')
                          ->pagination($records_per_page, $page)
                          ->get_all();
@@ -55,9 +55,9 @@ class UsersModel extends Model {
     }
 
     /**
-     * Get all users (no pagination, no search)
+     * Get all users (optionally with deleted)
      */
-    public function all() {
-        return $this->db->table($this->table)->get_all();
+    public function all($with_deleted = false) {
+        return $this->db->table($this->table)->get_all($with_deleted);
     }
 }
