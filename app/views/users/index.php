@@ -92,7 +92,7 @@
 
 <!-- Pagination -->
 <div class="mt-6 flex justify-center">
-  <div class="flex flex-row flex-wrap items-center gap-2 text-sm font-medium" style="font-family:'IM Fell English', serif;">
+  <div class="flex flex-row items-center gap-2 whitespace-nowrap text-sm font-medium" style="font-family:'IM Fell English', serif;">
     <?php 
       if (!empty($page)) {
         echo str_replace(
