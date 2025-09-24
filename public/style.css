@@ -16,7 +16,7 @@
     padding: 0.5rem 1rem;
     min-width: 50px;
     border-radius: 0.5rem;
-    background: linear-gradient(to right, rgb(241, 190, 154), #D2B48C); /* SaddleBrown to Tan */
+    background: linear-gradient(to right, rgb(243, 168, 115), #D2B48C); /* SaddleBrown to Tan */
     color: #f5f5dc; /* Beige / parchment-like */
     text-decoration: none;
     font-weight: 600;
@@ -41,6 +41,6 @@
     background-color: #DAA520; /* Goldenrod */
     color: #4B0082; /* Indigo for contrast, wizardly vibe */
     font-weight: 700;
-    border: 2px solid #8B4513; /* SaddleBrown border */
+    border: 2px solid #eab086; /* SaddleBrown border */
     box-shadow: 0 0 10px #FFD700, 0 0 20px #DAA520;
 }
