@@ -49,7 +49,7 @@
         <!-- Add Button -->
         <a href="<?=site_url('users/create')?>"
            class="btn-hover inline-flex items-center gap-2 bg-gradient-to-r from-red-700 to-yellow-600 text-white font-bold px-5 py-2 rounded-lg shadow-md transition-all duration-300">
-          <i class="fa-solid fa-user-plus"></i> Add New Student
+          <i class="fa-solid fa-user-plus"></i> Add New 
         </a>
       </div>
 
