@@ -29,11 +29,14 @@ class Usersmodel extends Model {
             $query = $this->db->table($this->table);
 
             if (!empty($q)) {
-                $query->like('id', $q)
-                ->or_like('last_name', $q)
-                ->or_like('first_name', $q)
-                ->or_like('email', $q);
-                }
+                $query->group_start()
+                    ->like('id', $q)
+                    ->or_like('last_name', $q)
+                    ->or_like('first_name', $q)
+                    ->or_like('email', $q)
+                ->group_end();
+            }
+
 
 
             // count total rows
