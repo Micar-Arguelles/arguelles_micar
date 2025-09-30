@@ -1,3 +1,7 @@
+<?php
+defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,24 +37,20 @@
       <!-- Top Actions -->
       <div class="flex justify-between items-center mb-6">
         
-      <!-- Search Bar -->
-  <form method="get" action="<?=site_url('/users')?>" class="mb-4 flex justify-end">
-    <input 
-      type="text" 
-      name="q" 
-      value="<?=html_escape($_GET['q'] ?? '')?>" 
-      placeholder="Search student..." 
-      class="px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-green-500 w-64">
-    <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-r-lg shadow transition-all duration-300">
-      <i class="fa fa-search"></i>
-    </button>
-  </form>
+        <!-- Search Bar -->
+        <form method="get" action="<?=site_url('/auth/dashboard')?>" class="mb-4 flex justify-end">
+          <input 
+            type="text" 
+            name="q" 
+            value="<?=html_escape($_GET['q'] ?? '')?>" 
+            placeholder="Search student..." 
+            class="px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-green-500 w-64">
+          <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-r-lg shadow transition-all duration-300">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
 
-        <!-- Add Button -->
-        <a href="<?=site_url('users/create')?>"
-           class="btn-hover inline-flex items-center gap-2 bg-gradient-to-r from-red-700 to-yellow-600 text-white font-bold px-5 py-2 rounded-lg shadow-md transition-all duration-300">
-          <i class="fa-solid fa-user-plus"></i> Add New 
-        </a>
+        <!-- ✅ No Add New button here for users -->
       </div>
 
       <!-- Table -->
@@ -62,7 +62,7 @@
               <th class="py-3 px-4">Lastname</th>
               <th class="py-3 px-4">Firstname</th>
               <th class="py-3 px-4">Email</th>
-              <th class="py-3 px-4">Action</th>
+              <!-- ✅ No Action column -->
             </tr>
           </thead>
           <tbody class="text-gray-900 text-sm" style="font-family:'IM Fell English', serif;">
@@ -73,53 +73,41 @@
                   <td class="py-3 px-4"><?=($user['last_name']);?></td>
                   <td class="py-3 px-4"><?=($user['first_name']);?></td>
                   <td class="py-3 px-4"><?=($user['email']);?></td>
-                  <td class="py-3 px-4 flex justify-center gap-3">
-                    <a href="<?=site_url('users/update/'.$user['id']);?>"
-                       class="btn-hover bg-green-700 hover:bg-green-800 text-yellow-100 px-3 py-1 rounded-lg shadow flex items-center gap-1">
-                      <i class="fa-solid fa-pen-to-square"></i> Update
-                    </a>
-                    <a href="<?=site_url('users/delete/'.$user['id']);?>"
-                       class="btn-hover bg-red-700 hover:bg-red-900 text-yellow-100 px-3 py-1 rounded-lg shadow flex items-center gap-1">
-                      <i class="fa-solid fa-trash"></i> Delete
-                    </a>
-                  </td>
+                  <!-- ✅ No Update/Delete buttons -->
                 </tr>
               <?php endforeach; ?>
             <?php else: ?>
-              <tr><td colspan="5" class="py-4 text-gray-600">No students found.</td></tr>
+              <tr><td colspan="4" class="py-4 text-gray-600">No students found.</td></tr>
             <?php endif; ?>
           </tbody>
         </table>
       </div>
 
       <!-- Pagination -->
-<div class="mt-4 flex justify-center">
-  <div class="pagination flex space-x-2">
-    <?php
-      if (!empty($page)) {
-        // Palitan ang <strong> at <a> ng custom class
-        echo str_replace(
-          ['<a ', '<strong>', '</strong>'],
-          [
-            '<a class="hp-page"',          // Normal page link
-            '<span class="hp-current">',   // Current page
-            '</span>'
-          ],
-          $page
-        );
-      }
-    ?>
-  </div>
-      <!-- Logout Button -->
-    <a href="<?=site_url('auth/logout');?>"
-       class="logout-btn">
-       <i class="fa-solid fa-right-from-bracket"></i> Logout
-    </a>
-    
-</div>
+      <div class="mt-4 flex justify-between items-center">
+        <!-- Pagination left -->
+        <div class="pagination flex space-x-2">
+          <?php
+            if (!empty($page)) {
+              echo str_replace(
+                ['<a ', '<strong>', '</strong>'],
+                [
+                  '<a class="hp-page"',
+                  '<span class="hp-current">',
+                  '</span>'
+                ],
+                $page
+              );
+            }
+          ?>
+        </div>
 
-
-</div>
+        <!-- Logout Button -->
+        <a href="<?=site_url('auth/logout');?>"
+           class="btn-hover bg-red-700 hover:bg-red-900 text-yellow-100 px-4 py-2 rounded-lg shadow flex items-center gap-2">
+           <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </a>
+      </div>
 
     </div>
   </div>
