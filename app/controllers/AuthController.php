@@ -2,22 +2,34 @@
 class AuthController extends Controller
 {
 
-    public function register()
+        public function register()
     {
         $this->call->library('auth');
 
         if ($this->io->method() == 'post') {
-            $username = $this->io->post('username');
+            $username = trim($this->io->post('username'));
             $password = $this->io->post('password');
             $role = $this->io->post('role') ?? 'user';
 
+            // ✅ Password validation rule
+            $password_pattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/';
+
+            if (!preg_match($password_pattern, $password)) {
+                echo "<script>alert('Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number.'); window.history.back();</script>";
+                exit;
+            }
+
+            // ✅ Proceed with registration if valid
             if ($this->auth->register($username, $password, $role)) {
                 redirect('auth/login');
+            } else {
+                echo "<script>alert('Registration failed. Please try again.');</script>";
             }
         }
 
         $this->call->view('auth/register');
     }
+
 
     public function login()
 {

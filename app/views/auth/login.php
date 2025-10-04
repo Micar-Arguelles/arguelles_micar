@@ -32,7 +32,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
   <!-- Login Card -->
   <div class="bg-yellow-50 border-4 border-yellow-700 rounded-xl shadow-xl w-full max-w-sm p-8">
     <h1 class="font-title text-3xl text-center text-red-900 mb-6 flex items-center justify-center gap-2">
-      <i class="fa-solid fa-hat-wizard text-yellow-700"></i> Login Portal
+      <i class="fa-solid fa-hat-wizard text-yellow-700"></i> Login
     </h1>
 
     <form method="post" class="space-y-5">
